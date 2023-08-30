@@ -711,20 +711,20 @@ params = {'alpha': [0.000001, 0.00001,0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 500,
 lasso_final_model, y_test_predicted = build_model(X_train_rfe, y_train, X_test_rfe, params, model='lasso')
 
 
-# In[624]:
+# In[628]:
 
 
 # Comparing Model Coefficients
 model_coefficients = pd.DataFrame(index=X_test_rfe.columns)
 model_coefficients.rows = X_test_rfe.columns
 
-model_coefficients['Ridge (alpha=9.0)'] = ridge_final_model.coef_
-model_coefficients['Lasso (alpha=0.0001)'] = lasso_final_model.coef_
+model_coefficients['Ridge (alpha=50.0)'] = ridge_final_model.coef_
+model_coefficients['Lasso (alpha=0.001)'] = lasso_final_model.coef_
 pd.set_option('display.max_rows', None)
 model_coefficients
 
 
-# In[625]:
+# In[629]:
 
 
 # Converting the predictions to its original scale (anti log)
@@ -733,13 +733,13 @@ test_prediction = np.round(np.exp(y_test_predicted)).astype(int)
 print(test_prediction[:5])
 
 
-# In[626]:
+# In[631]:
 
 
 # 50 features ordered by feature importance in Lasso Regression
 
-model_coefficients[['Lasso (alpha=0.0001)']].sort_values(by='Lasso (alpha=0.0001)', ascending=False)
-model_coefficients[['Lasso (alpha=0.0001)']].sort_values(by='Lasso (alpha=0.0001)', ascending=False).index[:10]
+model_coefficients[['Lasso (alpha=0.001)']].sort_values(by='Lasso (alpha=0.001)', ascending=False)
+model_coefficients[['Lasso (alpha=0.001)']].sort_values(by='Lasso (alpha=0.001)', ascending=False).index[:10]
 
 
 # In[ ]:
